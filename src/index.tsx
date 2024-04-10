@@ -6,7 +6,7 @@ import App from './App.tsx';
 import { darkTheme } from './theme.ts';
 import { createGlobalStyle } from 'styled-components';
 const GlobalStyle = createGlobalStyle`
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Noto+Sans+KR:wght@100..900&display=swap');
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -58,11 +58,11 @@ table {
   box-sizing: border-box;
 }
 body {
-  font-weight: 300;
-  font-family: 'Source Sans Pro', sans-serif;
-  color:black;
-  line-height: 1.2;
-  background:linear-gradient(135deg,#e09,#d0e);
+  font-family: "Black Han Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /* background:linear-gradient(200deg,#ffffff,#cdcbcb); */
+  background-color: white;
 }
 a {
   text-decoration:none;
