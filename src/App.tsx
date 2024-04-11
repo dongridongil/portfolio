@@ -8,7 +8,7 @@ import Footer from './Components/Footer/Footer.tsx';
 import Header from './Components/Header/Header.tsx';
 function App() {
     return (
-        <HashRouter>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             <Routes>
                 <Route
                     path={'/'}
