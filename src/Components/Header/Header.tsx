@@ -18,7 +18,7 @@ const Nav = styled(motion.nav)`
 `;
 
 const Tab = styled.div`
-    color: white;
+    color: whitesmoke;
     font-size: 20px;
     margin: 0 10px;
     left: -510px;
@@ -26,35 +26,46 @@ const Tab = styled.div`
     padding: 30px;
     cursor: pointer;
     &:hover {
+        font-weight: 1000;
         color: #e31b6d;
     }
 `;
 
 const navVar = {
     top: {
-        backgroundColor: 'rgba(0,0,0,0)',
-        transition: { duration: 1 },
+        backgroundColor: '#358aa4',
+        transition: { duration: 0.5 },
     },
 
     scroll: {
-        backgroundColor: '#2f2e2e',
-        transition: { duration: 2.5 },
+        backgroundColor: 'rgba(0,0,0,0)',
+        transition: { duration: 0.5 },
     },
 };
 const Header = () => {
-    const { scrollY } = useScroll();
-    const navAnimation = useAnimation();
+    const [prevScrollPos, setPrevScrollPos] = useState(0);
+    const controls = useAnimation();
+    const handleScroll = () => {
+        const currentScrollPos = window.pageYOffset;
 
-    useMotionValueEvent(scrollY, 'change', (latest) => {
-        if (scrollY.get() > 50) {
-            navAnimation.start('scroll');
+        if (currentScrollPos > prevScrollPos) {
+            controls.start('scroll');
         } else {
-            navAnimation.start('top');
+            controls.start('top');
         }
-    });
+
+        setPrevScrollPos(currentScrollPos);
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [prevScrollPos]);
 
     return (
-        <Nav variants={navVar} animate={navAnimation} initial={'top'}>
+        <Nav variants={navVar} initial="top" animate={controls}>
             <ul>
                 <Tab>
                     <a href="#home">HOME</a>
